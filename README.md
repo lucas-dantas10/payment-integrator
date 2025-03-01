@@ -19,14 +19,14 @@ Este projeto é uma API de integração de pagamentos online desenvolvida em **S
 ```
 📂 integrador-pagamentos
  ├── 📂 src/main/java/com/exemplo/pagamentos
- │    ├── 📂 controller      # Exposição de APIs REST
- │    ├── 📂 entity          # Mapeamento das tabelas no banco
- │    ├── 📂 repository      # Acesso ao banco de dados
- │    ├── 📂 service         # Lógica de negócio
- │    ├── 📂 rabbitmq        # Comunicação assíncrona
+ │    ├── 📂 action           # Exposição de APIs REST
+ │    ├── 📂 domain           # Regras de negócio
+ │    ├── 📂 infra            # Serviços externos
+ │    ├── 📂 application      # Serviços da aplicação
+ │    ├── 📂 config           # Configurações
  │    ├── 📄 Application.java # Classe principal do Spring Boot
  ├── 📂 src/main/resources
- │    ├── 📄 application.yml # Configurações do Spring Boot
+ │    ├── 📄 application.yml  # Configurações do Spring Boot
  ├── 📄 pom.xml
  ├── 📄 Dockerfile
  ├── 📄 docker-compose.yml
