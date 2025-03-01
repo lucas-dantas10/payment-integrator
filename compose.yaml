@@ -1,16 +1,42 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    image: postgres:latest
+    container_name: postgres_payment_integrator
     environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+      POSTGRES_DB: payment_integrator
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
     ports:
-      - '5432'
+      - '5433:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   rabbitmq:
-    image: 'rabbitmq:latest'
+    image: rabbitmq:3-management
+    container_name: rabbitmq_payment_integrator
+    restart: always
     environment:
-      - 'RABBITMQ_DEFAULT_PASS=secret'
-      - 'RABBITMQ_DEFAULT_USER=myuser'
+      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_DEFAULT_USER: admin
     ports:
-      - '5672'
+      - "5672"
+      - "15672:15672"
+
+  app:
+    build: .
+    container_name: payment_integrator
+    restart: always
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/payment_integrator
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: admin
+      SPRING_RABBITMQ_PASSWORD: admin
+    ports:
+      - "8080:8080"
+volumes:
+  postgres_data:
