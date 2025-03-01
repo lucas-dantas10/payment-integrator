@@ -8,6 +8,10 @@ spring:
     password: test
     driver-class-name: org.postgresql.Driver
 
+  flyway:
+    schemas: authentication, financial, log
+    baseline-on-migrate: true
+
   jpa:
     hibernate:
       ddl-auto: update
