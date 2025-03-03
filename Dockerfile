@@ -1,8 +1,18 @@
+FROM maven:3.8.6-openjdk-23 AS build
+
+WORKDIR /app
+
+COPY . .
+
+RUN mvn clean package -DskipTests
+
 FROM openjdk:23-jdk-slim
 
 WORKDIR /app
 
-COPY target/payment_integrator-0.0.1-SNAPSHOT.jar app.jar
+ARG JAR_FILE=target/*.jar
+
+COPY ${JAR_FILE} app.jar
 
 EXPOSE 8080
 
