@@ -32,7 +32,7 @@ public class Payment {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private StatusPaymentEnum status;
+    private StatusPaymentEnum status = StatusPaymentEnum.PENDING;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
