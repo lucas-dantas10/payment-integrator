@@ -43,8 +43,8 @@ sudo mv src/main/resources/application-example.yaml src/main/resources/applicati
 ## 🔧 **Como Rodar o Projeto**
 ### 🔹 **Passo 1: Clonar o repositório**
 ```sh
-git clone https://github.com/seuusuario/integrador-pagamentos.git
-cd integrador-pagamentos
+git clone https://github.com/seuusuario/payment-integrator.git
+cd payment-integrator
 ```
 
 ### 🔹 **Passo 2: Gerar o JAR**
