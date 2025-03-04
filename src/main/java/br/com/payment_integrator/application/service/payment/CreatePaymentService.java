@@ -7,6 +7,7 @@ import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import br.com.payment_integrator.domain.exception.user.UserNotFoundException;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
+import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.gateway.service.rabbitmq.producer.PaymentProducerGateway;
 import br.com.payment_integrator.infra.repository.authentication.UserRepository;
 import br.com.payment_integrator.infra.repository.financial.PaymentRepository;
@@ -23,6 +24,7 @@ public class CreatePaymentService implements ICreatePaymentService {
     private final PaymentRepository paymentRepository;
     private final UserRepository userRepository;
     private final PaymentProducerGateway paymentProducerGateway;
+    private final ICreatePaymentLogService createPaymentLogService;
 
     @Override
     @Transactional
@@ -42,6 +44,8 @@ public class CreatePaymentService implements ICreatePaymentService {
         paymentRepository.save(payment);
 
         paymentProducerGateway.sendPaymentForProcessing(payment.getId());
+
+        createPaymentLogService.createPaymentLog(payment, "Pagamento criado com sucesso");
 
         return PaymentResponseDTO.builder()
                 .id(payment.getId())

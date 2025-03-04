@@ -4,6 +4,7 @@ import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import br.com.payment_integrator.domain.exception.payment.PaymentNotFoundException;
 import br.com.payment_integrator.domain.service.payment.IProcessPaymentService;
+import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.infra.repository.financial.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.UUID;
 public class ProcessPaymentService implements IProcessPaymentService {
 
     private final PaymentRepository paymentRepository;
+    private final ICreatePaymentLogService createPaymentLogService;
 
     @Override
     public void processPayment(String paymentId) {
@@ -25,5 +27,7 @@ public class ProcessPaymentService implements IProcessPaymentService {
         payment.setStatus(StatusPaymentEnum.APPROVED);
 
         paymentRepository.save(payment);
+
+        createPaymentLogService.createPaymentLog(payment, "Pagamento processado com sucesso");
     }
 }
