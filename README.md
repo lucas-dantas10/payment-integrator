@@ -57,7 +57,7 @@ mvn clean package -DskipTests
 docker-compose up -d
 ```
 
-### 🔹 **Passo 4: Testar a API**
+### 🔹 **Passo 4: Testar a API com curl**
 Criar um pagamento:
 ```sh
 curl -X POST "http://localhost:8080/payments/1/create?amount=100.00"
@@ -67,6 +67,23 @@ Consultar logs de pagamento:
 ```sh
 curl -X GET "http://localhost:8080/payments/10/logs"
 ```
+
+### 🔹 Passo 5: Testando a API com Swagger
+
+Após iniciar sua aplicação, você pode testar os endpoints diretamente pelo **Swagger UI**.
+
+📌 **Acesse a interface do Swagger:**  
+🔗 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+### 🔍 Como testar:
+1. **Abra o link acima no navegador.**
+2. **Explore os endpoints disponíveis.**
+3. **Clique em um endpoint para ver os detalhes.**
+4. **Preencha os parâmetros necessários (se houver).**
+5. **Clique em "Execute" para enviar a requisição e ver a resposta.**
+
+💡 O Swagger facilita a visualização e testes da API diretamente no navegador, sem a necessidade de ferramentas externas como **Insomnia**.
+
 
 ## 🔄 **Fluxo do Sistema**
 1️⃣ O **usuário** solicita um pagamento.
