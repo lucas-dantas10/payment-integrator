@@ -2,6 +2,7 @@ package br.com.payment_integrator.application.service.user;
 
 import br.com.payment_integrator.domain.dto.user.create_user.CreateUserDTO;
 import br.com.payment_integrator.domain.entity.authentication.User;
+import br.com.payment_integrator.domain.exception.user.UserAlreadyExistException;
 import br.com.payment_integrator.domain.service.user.ICreateUserService;
 import br.com.payment_integrator.infra.repository.authentication.UserRepository;
 import jakarta.transaction.Transactional;
@@ -22,7 +23,7 @@ public class CreateUserService implements ICreateUserService {
         Optional<User> userExist = userRepository.findByEmail(createUserDTO.email());
 
         if (userExist.isPresent()) {
-            throw new Exception("Usuário já existe");
+            throw new UserAlreadyExistException();
         }
 
         User user = User.builder()

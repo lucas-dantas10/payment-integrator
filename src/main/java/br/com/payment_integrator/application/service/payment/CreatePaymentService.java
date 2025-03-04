@@ -5,13 +5,13 @@ import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
 import br.com.payment_integrator.domain.entity.authentication.User;
 import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
+import br.com.payment_integrator.domain.exception.user.UserNotFoundException;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
 import br.com.payment_integrator.gateway.service.rabbitmq.producer.PaymentProducerGateway;
 import br.com.payment_integrator.infra.repository.authentication.UserRepository;
 import br.com.payment_integrator.infra.repository.financial.PaymentRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import static org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -29,7 +29,7 @@ public class CreatePaymentService implements ICreatePaymentService {
     public PaymentResponseDTO createPayment(CreatePaymentDTO createPaymentDTO) throws Exception {
         User user = userRepository
                 .findById(UUID.fromString(createPaymentDTO.userId()))
-                .orElseThrow(NotFoundException::new);
+                .orElseThrow(UserNotFoundException::new);
 
         Payment payment = Payment.builder()
             .user(user)
