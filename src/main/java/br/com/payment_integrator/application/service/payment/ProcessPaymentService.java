@@ -9,6 +9,7 @@ import br.com.payment_integrator.infra.repository.financial.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -25,6 +26,7 @@ public class ProcessPaymentService implements IProcessPaymentService {
         // TODO: chamar gateway de pagamento
 
         payment.setStatus(StatusPaymentEnum.APPROVED);
+        payment.setUpdatedStatusAt(LocalDateTime.now());
 
         paymentRepository.save(payment);
 
