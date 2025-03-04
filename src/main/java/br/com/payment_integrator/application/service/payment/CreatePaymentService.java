@@ -6,6 +6,7 @@ import br.com.payment_integrator.domain.entity.authentication.User;
 import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
+import br.com.payment_integrator.gateway.service.rabbitmq.producer.PaymentProducerGateway;
 import br.com.payment_integrator.infra.repository.authentication.UserRepository;
 import br.com.payment_integrator.infra.repository.financial.PaymentRepository;
 import jakarta.transaction.Transactional;
@@ -21,6 +22,7 @@ public class CreatePaymentService implements ICreatePaymentService {
 
     private final PaymentRepository paymentRepository;
     private final UserRepository userRepository;
+    private final PaymentProducerGateway paymentProducerGateway;
 
     @Override
     @Transactional
@@ -38,6 +40,8 @@ public class CreatePaymentService implements ICreatePaymentService {
             .build();
 
         paymentRepository.save(payment);
+
+        paymentProducerGateway.sendPaymentForProcessing(payment.getId());
 
         return PaymentResponseDTO.builder()
                 .id(payment.getId())
