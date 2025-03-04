@@ -1,5 +1,6 @@
 package br.com.payment_integrator.application.service.payment;
 
+import br.com.payment_integrator.domain.dto.payment.create_payment.CreatePaymentDTO;
 import br.com.payment_integrator.domain.entity.authentication.User;
 import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
@@ -22,12 +23,15 @@ public class CreatePaymentService implements ICreatePaymentService {
 
     @Override
     @Transactional
-    public Payment createPayment(UUID userId, BigDecimal amount) throws Exception {
-        User user = userRepository.findById(userId).orElseThrow(NotFoundException::new);
+    public Payment createPayment(CreatePaymentDTO createPaymentDTO) throws Exception {
+        User user = userRepository
+                .findById(UUID.fromString(createPaymentDTO.userId()))
+                .orElseThrow(NotFoundException::new);
 
         Payment payment = Payment.builder()
             .user(user)
-            .amount(amount)
+            .amount(createPaymentDTO.amount())
+            .paymentMethod(createPaymentDTO.paymentMethod())
             .build();
 
         paymentRepository.save(payment);

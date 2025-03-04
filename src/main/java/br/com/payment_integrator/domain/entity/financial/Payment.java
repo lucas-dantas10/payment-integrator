@@ -1,6 +1,7 @@
 package br.com.payment_integrator.domain.entity.financial;
 
 import br.com.payment_integrator.domain.entity.authentication.User;
+import br.com.payment_integrator.domain.enums.PaymentMethodEnum;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,16 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
+    @Column(length = '3', nullable = false)
+    private String currency = "BRL";
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusPaymentEnum status = StatusPaymentEnum.PENDING;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_method", nullable = false)
+    private PaymentMethodEnum paymentMethod;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
