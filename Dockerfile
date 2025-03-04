@@ -1,18 +1,22 @@
-FROM maven:3.8.6-openjdk-23 AS build
-
+FROM amazoncorretto:23-alpine AS build
 WORKDIR /app
 
-COPY . .
+RUN apk add --no-cache tar
 
-RUN mvn clean package -DskipTests
+COPY pom.xml .
+COPY mvnw .
+COPY .mvn ./.mvn
+COPY src ./src
+
+RUN chmod +x mvnw
+RUN ./mvnw dependency:go-offline -B
+RUN ./mvnw clean package -DskipTests
 
 FROM openjdk:23-jdk-slim
 
 WORKDIR /app
 
-ARG JAR_FILE=target/*.jar
-
-COPY ${JAR_FILE} app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 
