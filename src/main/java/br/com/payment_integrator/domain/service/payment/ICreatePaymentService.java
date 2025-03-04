@@ -1,11 +1,8 @@
 package br.com.payment_integrator.domain.service.payment;
 
-import br.com.payment_integrator.domain.dto.payment.create_payment.CreatePaymentDTO;
-import br.com.payment_integrator.domain.entity.financial.Payment;
-
-import java.math.BigDecimal;
-import java.util.UUID;
+import br.com.payment_integrator.domain.dto.payment.request.create_payment.CreatePaymentDTO;
+import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
 
 public interface ICreatePaymentService {
-    Payment createPayment(CreatePaymentDTO createPaymentDTO) throws Exception;
+    PaymentResponseDTO createPayment(CreatePaymentDTO createPaymentDTO) throws Exception;
 }

@@ -1,4 +1,4 @@
-package br.com.payment_integrator.domain.dto.payment.create_payment;
+package br.com.payment_integrator.domain.dto.payment.request.create_payment;
 
 public record CustomerDTO(String name, String email) {
 }

@@ -6,6 +6,7 @@ import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcType;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @Entity
 @Table(schema = "financial", name = "tb_payment")
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Payment {

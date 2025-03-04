@@ -1,6 +1,7 @@
 package br.com.payment_integrator.application.service.payment;
 
-import br.com.payment_integrator.domain.dto.payment.create_payment.CreatePaymentDTO;
+import br.com.payment_integrator.domain.dto.payment.request.create_payment.CreatePaymentDTO;
+import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
 import br.com.payment_integrator.domain.entity.authentication.User;
 import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
@@ -12,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import static org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -25,7 +24,7 @@ public class CreatePaymentService implements ICreatePaymentService {
 
     @Override
     @Transactional
-    public Payment createPayment(CreatePaymentDTO createPaymentDTO) throws Exception {
+    public PaymentResponseDTO createPayment(CreatePaymentDTO createPaymentDTO) throws Exception {
         User user = userRepository
                 .findById(UUID.fromString(createPaymentDTO.userId()))
                 .orElseThrow(NotFoundException::new);
@@ -40,6 +39,11 @@ public class CreatePaymentService implements ICreatePaymentService {
 
         paymentRepository.save(payment);
 
-        return payment;
+        return PaymentResponseDTO.builder()
+                .id(payment.getId())
+                .amount(payment.getAmount())
+                .status(payment.getStatus())
+                .paymentMethod(payment.getPaymentMethod())
+                .build();
     }
 }

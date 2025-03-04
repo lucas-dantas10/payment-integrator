@@ -1,10 +1,10 @@
 package br.com.payment_integrator.action.payment;
 
-import br.com.payment_integrator.domain.dto.payment.create_payment.CreatePaymentDTO;
+import br.com.payment_integrator.domain.dto.payment.request.create_payment.CreatePaymentDTO;
+import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
 import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,7 @@ public class CreatePaymentPostAction {
     private final ICreatePaymentService createPaymentService;
 
     @PostMapping
-    public ResponseEntity<Payment> createPayment(@RequestBody CreatePaymentDTO createPaymentDTO) throws Exception {
-        return ResponseEntity.status(HttpStatus.CREATED).body(createPaymentService.createPayment(createPaymentDTO));
+    public ResponseEntity<PaymentResponseDTO> createPayment(@RequestBody CreatePaymentDTO createPaymentDTO) throws Exception {
+        return ResponseEntity.ok(createPaymentService.createPayment(createPaymentDTO));
     }
 }

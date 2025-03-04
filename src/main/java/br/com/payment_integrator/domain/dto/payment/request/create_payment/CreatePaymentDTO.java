@@ -1,4 +1,4 @@
-package br.com.payment_integrator.domain.dto.payment.create_payment;
+package br.com.payment_integrator.domain.dto.payment.request.create_payment;
 
 import br.com.payment_integrator.domain.enums.PaymentMethodEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
