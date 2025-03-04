@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/your_database
-    username: test
-    password: test
+    username: admin
+    password: admin
     driver-class-name: org.postgresql.Driver
 
   flyway:
