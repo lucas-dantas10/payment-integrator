@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.PostgreSQLEnumJdbcType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -31,11 +33,12 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
-    @Column(length = '3', nullable = false)
-    private String currency = "BRL";
+    @Column(name = "currency", length = '3', nullable = false)
+    private String currency;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    @Column(nullable = false, columnDefinition = "status_payment")
     private StatusPaymentEnum status = StatusPaymentEnum.PENDING;
 
     @Enumerated(EnumType.STRING)

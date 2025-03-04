@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS financial.tb_payment (
     amount DECIMAL(10,2) NOT NULL,
     currency VARCHAR(3) NOT NULL DEFAULT 'BRL',
     status STATUS_PAYMENT NOT NULL,
-    payment_method PAYMENT_METHOD NOT NULL,
+    payment_method VARCHAR(50) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     updated_status_at TIMESTAMP
 );
