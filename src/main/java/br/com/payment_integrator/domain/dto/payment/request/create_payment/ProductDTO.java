@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 public record ProductDTO(
         @NotNull(message = "O campo de nome é obrigatório")
         @Min(value = 1, message = "O nome precisa ter pelo menos 3 caracteres")
+        @Max(value = 200, message = "O nome espera no máximo 200 caracteres")
         String name,
 
         @Min(value = 1, message = "A descrição precisa ter pelo menos 3 caracteres")

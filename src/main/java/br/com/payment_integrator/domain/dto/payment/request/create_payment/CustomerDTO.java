@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 public record CustomerDTO(
         @NotNull(message = "O campo de name é obrigatório")
         @Min(value = 1, message = "O nome precisa ter pelo menos 3 caracteres")
+        @Max(value = 200, message = "O nome espera no máximo 200 caracteres")
         String name,
 
         @NotNull(message = "O campo de email é obrigatório")
