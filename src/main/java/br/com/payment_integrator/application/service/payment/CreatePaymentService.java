@@ -30,7 +30,7 @@ public class CreatePaymentService implements ICreatePaymentService {
 
         Payment payment = Payment.builder()
             .user(user)
-            .amount(createPaymentDTO.amount())
+            .amount(createPaymentDTO.totalAmount())
             .status(StatusPaymentEnum.PENDING)
             .paymentMethod(createPaymentDTO.paymentMethod())
             .currency(createPaymentDTO.currency())
