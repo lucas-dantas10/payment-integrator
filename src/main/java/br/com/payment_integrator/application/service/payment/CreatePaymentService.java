@@ -8,6 +8,7 @@ import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import br.com.payment_integrator.domain.service.customer.ICreateCustomerService;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
 import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
+import br.com.payment_integrator.domain.service.product.ICreateProductService;
 import br.com.payment_integrator.domain.service.user.IFindUserByIdService;
 import br.com.payment_integrator.gateway.service.rabbitmq.producer.PaymentProducerGateway;
 import br.com.payment_integrator.infra.repository.financial.PaymentRepository;
@@ -24,6 +25,7 @@ public class CreatePaymentService implements ICreatePaymentService {
     private final PaymentProducerGateway paymentProducerGateway;
     private final ICreatePaymentLogService createPaymentLogService;
     private final ICreateCustomerService createCustomerService;
+    private final ICreateProductService createProductService;
 
     @Override
     @Transactional
@@ -41,6 +43,8 @@ public class CreatePaymentService implements ICreatePaymentService {
         paymentRepository.save(payment);
 
         createCustomerService.createCustomer(createPaymentDTO.customer(), payment);
+
+        createPaymentDTO.products().forEach(productDTO -> createProductService.createProduct(productDTO, payment));
 
         paymentProducerGateway.sendPaymentForProcessing(payment.getId());
 
