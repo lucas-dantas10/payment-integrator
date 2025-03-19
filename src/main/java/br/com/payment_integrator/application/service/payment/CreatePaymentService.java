@@ -5,6 +5,7 @@ import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
 import br.com.payment_integrator.domain.entity.authentication.User;
 import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
+import br.com.payment_integrator.domain.service.customer.ICreateCustomerService;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
 import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.domain.service.user.IFindUserByIdService;
@@ -22,6 +23,7 @@ public class CreatePaymentService implements ICreatePaymentService {
     private final IFindUserByIdService findUserByIdService;
     private final PaymentProducerGateway paymentProducerGateway;
     private final ICreatePaymentLogService createPaymentLogService;
+    private final ICreateCustomerService createCustomerService;
 
     @Override
     @Transactional
@@ -37,6 +39,8 @@ public class CreatePaymentService implements ICreatePaymentService {
             .build();
 
         paymentRepository.save(payment);
+
+        createCustomerService.createCustomer(createPaymentDTO.customer(), payment);
 
         paymentProducerGateway.sendPaymentForProcessing(payment.getId());
 
