@@ -60,12 +60,12 @@ docker-compose up -d
 ### 🔹 **Passo 4: Testar a API com curl**
 Criar um pagamento:
 ```sh
-curl -X POST "http://localhost:8080/payments/1/create?amount=100.00"
+curl -X POST "http://localhost:8080/api/payment"
 ```
 
 Consultar logs de pagamento:
 ```sh
-curl -X GET "http://localhost:8080/payments/10/logs"
+curl -X GET "http://localhost:8080/payment/10/logs"
 ```
 
 ### 🔹 Passo 5: Testando a API com Swagger
