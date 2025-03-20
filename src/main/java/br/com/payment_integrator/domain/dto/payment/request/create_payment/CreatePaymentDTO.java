@@ -15,12 +15,12 @@ public record CreatePaymentDTO(
         @NotNull(message = "O campo de user_id é obrigatório")
         String userId,
 
-        @NotNull(message = "O campo de user_id é obrigatório") // TODO: Validar se tem como fixar os valores necessarios nesse campo
+        @NotNull(message = "O campo de user_id é obrigatório")
         CurrencyEnum currency,
 
         @JsonProperty("total_amount")
         @NotNull(message = "O campo de total_amount é obrigatório")
-        @Min(value = 1, message = "O valor total mínimo é 1") // TODO: Validar se vai ser por centavos ou real
+        @Min(value = 1, message = "O valor total mínimo é 1")
         BigDecimal totalAmount,
 
         @JsonProperty("payment_method")

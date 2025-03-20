@@ -16,7 +16,7 @@ public record ProductDTO(
         String description,
 
         @NotNull(message = "O campo de price é obrigatório")
-        @Min(value = 1, message = "O preço mínimo é 1") // TODO: Validar se vai ser por centavos ou real
+        @Min(value = 1, message = "O preço mínimo é 1")
         BigDecimal price,
 
         @NotNull(message = "O campo de quantity é obrigatório")
