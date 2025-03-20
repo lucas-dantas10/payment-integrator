@@ -37,7 +37,7 @@ public class CreatePaymentService implements ICreatePaymentService {
             .amount(createPaymentDTO.totalAmount())
             .status(StatusPaymentEnum.PENDING)
             .paymentMethod(createPaymentDTO.paymentMethod())
-            .currency(createPaymentDTO.currency())
+            .currency(createPaymentDTO.currency().name())
             .build();
 
         paymentRepository.save(payment);

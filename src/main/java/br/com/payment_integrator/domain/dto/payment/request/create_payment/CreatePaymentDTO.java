@@ -1,5 +1,6 @@
 package br.com.payment_integrator.domain.dto.payment.request.create_payment;
 
+import br.com.payment_integrator.domain.enums.CurrencyEnum;
 import br.com.payment_integrator.domain.enums.PaymentMethodEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
@@ -15,7 +16,7 @@ public record CreatePaymentDTO(
         String userId,
 
         @NotNull(message = "O campo de user_id é obrigatório") // TODO: Validar se tem como fixar os valores necessarios nesse campo
-        String currency,
+        CurrencyEnum currency,
 
         @JsonProperty("total_amount")
         @NotNull(message = "O campo de total_amount é obrigatório")
