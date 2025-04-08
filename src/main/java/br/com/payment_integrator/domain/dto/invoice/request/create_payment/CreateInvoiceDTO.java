@@ -1,4 +1,4 @@
-package br.com.payment_integrator.domain.dto.payment.request.create_payment;
+package br.com.payment_integrator.domain.dto.invoice.request.create_payment;
 
 import br.com.payment_integrator.domain.enums.CurrencyEnum;
 import br.com.payment_integrator.domain.enums.PaymentMethodEnum;
@@ -10,7 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.List;
 
-public record CreatePaymentDTO(
+public record CreateInvoiceDTO(
         @JsonProperty("user_id")
         @NotNull(message = "O campo de user_id é obrigatório")
         String userId,

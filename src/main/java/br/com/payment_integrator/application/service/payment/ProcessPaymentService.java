@@ -5,7 +5,7 @@ import br.com.payment_integrator.domain.entity.financial.Customer;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import br.com.payment_integrator.domain.exception.payment.PaymentNotFoundException;
-import br.com.payment_integrator.domain.service.payment.IProcessPaymentService;
+import br.com.payment_integrator.domain.service.invoice.IProcessPaymentService;
 import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.infra.repository.financial.CustomerRepository;
 import br.com.payment_integrator.infra.repository.financial.InvoiceRepository;

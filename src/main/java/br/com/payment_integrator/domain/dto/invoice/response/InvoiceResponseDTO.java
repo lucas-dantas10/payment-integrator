@@ -1,16 +1,15 @@
-package br.com.payment_integrator.domain.dto.payment.response;
+package br.com.payment_integrator.domain.dto.invoice.response;
 
 import br.com.payment_integrator.domain.enums.PaymentMethodEnum;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Builder
-public record PaymentResponseDTO(
+public record InvoiceResponseDTO(
     UUID id,
     BigDecimal amount,
     StatusPaymentEnum status,

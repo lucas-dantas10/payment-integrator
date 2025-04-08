@@ -1,6 +1,5 @@
-package br.com.payment_integrator.domain.dto.payment.request.create_payment;
+package br.com.payment_integrator.domain.dto.invoice.request.create_payment;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

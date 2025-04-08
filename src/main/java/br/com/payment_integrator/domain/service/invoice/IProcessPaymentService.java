@@ -1,4 +1,4 @@
-package br.com.payment_integrator.domain.service.payment;
+package br.com.payment_integrator.domain.service.invoice;
 
 public interface IProcessPaymentService {
 

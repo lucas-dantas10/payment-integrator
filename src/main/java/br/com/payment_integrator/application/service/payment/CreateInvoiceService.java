@@ -1,12 +1,12 @@
 package br.com.payment_integrator.application.service.payment;
 
-import br.com.payment_integrator.domain.dto.payment.request.create_payment.CreatePaymentDTO;
-import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
+import br.com.payment_integrator.domain.dto.invoice.request.create_payment.CreateInvoiceDTO;
+import br.com.payment_integrator.domain.dto.invoice.response.InvoiceResponseDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import br.com.payment_integrator.domain.service.customer.ICreateCustomerService;
-import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
+import br.com.payment_integrator.domain.service.invoice.ICreateInvoiceService;
 import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.domain.service.product.ICreateProductService;
 import br.com.payment_integrator.domain.service.user.IFindAccountByIdService;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CreatePaymentService implements ICreatePaymentService {
+public class CreateInvoiceService implements ICreateInvoiceService {
 
     private final InvoiceRepository paymentRepository;
     private final IFindAccountByIdService findUserByIdService;
@@ -29,7 +29,7 @@ public class CreatePaymentService implements ICreatePaymentService {
 
     @Override
     @Transactional
-    public PaymentResponseDTO createPayment(CreatePaymentDTO createPaymentDTO) throws Exception {
+    public InvoiceResponseDTO createInvoice(CreateInvoiceDTO createPaymentDTO) throws Exception {
         Account account = findUserByIdService.findAccountById(createPaymentDTO.userId());
 
         Invoice invoice = Invoice.builder()
@@ -50,7 +50,7 @@ public class CreatePaymentService implements ICreatePaymentService {
 
         createPaymentLogService.createPaymentLog(invoice, "Pagamento criado com sucesso");
 
-        return PaymentResponseDTO.builder()
+        return InvoiceResponseDTO.builder()
                 .id(invoice.getId())
                 .amount(invoice.getAmount())
                 .status(invoice.getStatus())

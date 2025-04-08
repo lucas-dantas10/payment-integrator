@@ -1,6 +1,6 @@
 package br.com.payment_integrator.application.service.product;
 
-import br.com.payment_integrator.domain.dto.payment.request.create_payment.ProductDTO;
+import br.com.payment_integrator.domain.dto.invoice.request.create_payment.ProductDTO;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.domain.entity.financial.Product;
 import br.com.payment_integrator.domain.service.product.ICreateProductService;
