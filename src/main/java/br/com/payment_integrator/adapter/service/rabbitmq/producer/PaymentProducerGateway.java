@@ -1,4 +1,4 @@
-package br.com.payment_integrator.gateway.service.rabbitmq.producer;
+package br.com.payment_integrator.adapter.service.rabbitmq.producer;
 
 import java.util.UUID;
 

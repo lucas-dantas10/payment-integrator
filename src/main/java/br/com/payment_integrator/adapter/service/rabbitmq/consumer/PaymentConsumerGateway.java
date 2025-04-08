@@ -1,4 +1,4 @@
-package br.com.payment_integrator.gateway.service.rabbitmq.consumer;
+package br.com.payment_integrator.adapter.service.rabbitmq.consumer;
 
 public interface PaymentConsumerGateway {
 
