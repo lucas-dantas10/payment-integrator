@@ -4,5 +4,5 @@ import br.com.payment_integrator.domain.dto.invoice.request.create_payment.Creat
 import br.com.payment_integrator.domain.dto.invoice.response.InvoiceResponseDTO;
 
 public interface ICreateInvoiceService {
-    InvoiceResponseDTO createInvoice(CreateInvoiceDTO createPaymentDTO) throws Exception;
+    InvoiceResponseDTO createInvoice(CreateInvoiceDTO createInvoiceDTO) throws Exception;
 }

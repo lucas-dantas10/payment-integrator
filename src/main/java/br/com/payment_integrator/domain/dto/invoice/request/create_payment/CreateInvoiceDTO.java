@@ -11,9 +11,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public record CreateInvoiceDTO(
-        @JsonProperty("user_id")
-        @NotNull(message = "O campo de user_id é obrigatório")
-        String userId,
 
         @NotNull(message = "O campo de user_id é obrigatório")
         CurrencyEnum currency,

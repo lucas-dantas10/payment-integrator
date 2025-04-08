@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CreateInvoiceService implements ICreateInvoiceService {
 
-    private final InvoiceRepository paymentRepository;
+    private final InvoiceRepository invoiceRepository;
     private final IFindAccountByIdService findUserByIdService;
     private final PaymentProducerGateway paymentProducerGateway;
     private final ICreatePaymentLogService createPaymentLogService;
@@ -29,26 +29,26 @@ public class CreateInvoiceService implements ICreateInvoiceService {
 
     @Override
     @Transactional
-    public InvoiceResponseDTO createInvoice(CreateInvoiceDTO createPaymentDTO) throws Exception {
-        Account account = findUserByIdService.findAccountById(createPaymentDTO.userId());
+    public InvoiceResponseDTO createInvoice(CreateInvoiceDTO createInvoiceDTO) throws Exception {
+        Account account = findUserByIdService.findAccountById("123");
 
         Invoice invoice = Invoice.builder()
             .account(account)
-            .amount(createPaymentDTO.totalAmount())
+            .amount(createInvoiceDTO.totalAmount())
             .status(StatusPaymentEnum.PENDING)
-            .paymentMethod(createPaymentDTO.paymentMethod())
-            .currency(createPaymentDTO.currency().name())
+            .paymentMethod(createInvoiceDTO.paymentMethod())
+            .currency(createInvoiceDTO.currency().name())
             .build();
 
-        paymentRepository.save(invoice);
+        invoiceRepository.save(invoice);
 
-        createCustomerService.createCustomer(createPaymentDTO.customer(), invoice);
+        createCustomerService.createCustomer(createInvoiceDTO.customer(), invoice);
 
-        createPaymentDTO.products().forEach(productDTO -> createProductService.createProduct(productDTO, invoice));
+        createInvoiceDTO.products().forEach(productDTO -> createProductService.createProduct(productDTO, invoice));
 
         paymentProducerGateway.sendPaymentForProcessing(invoice.getId());
 
-        createPaymentLogService.createPaymentLog(invoice, "Pagamento criado com sucesso");
+        createPaymentLogService.createPaymentLog(invoice, "Fatura criada com sucesso");
 
         return InvoiceResponseDTO.builder()
                 .id(invoice.getId())
