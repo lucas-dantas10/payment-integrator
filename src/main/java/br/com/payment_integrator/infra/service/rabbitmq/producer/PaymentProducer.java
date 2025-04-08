@@ -1,7 +1,7 @@
 package br.com.payment_integrator.infra.service.rabbitmq.producer;
 
 import br.com.payment_integrator.config.RabbitMQConfig;
-import br.com.payment_integrator.gateway.service.rabbitmq.producer.PaymentProducerGateway;
+import br.com.payment_integrator.adapter.service.rabbitmq.producer.PaymentProducerGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;

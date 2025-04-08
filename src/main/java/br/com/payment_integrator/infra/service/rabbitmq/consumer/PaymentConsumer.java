@@ -2,7 +2,7 @@ package br.com.payment_integrator.infra.service.rabbitmq.consumer;
 
 import br.com.payment_integrator.config.RabbitMQConfig;
 import br.com.payment_integrator.domain.service.payment.IProcessPaymentService;
-import br.com.payment_integrator.gateway.service.rabbitmq.consumer.PaymentConsumerGateway;
+import br.com.payment_integrator.adapter.service.rabbitmq.consumer.PaymentConsumerGateway;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
