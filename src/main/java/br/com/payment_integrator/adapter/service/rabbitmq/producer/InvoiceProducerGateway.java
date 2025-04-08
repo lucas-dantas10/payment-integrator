@@ -2,7 +2,7 @@ package br.com.payment_integrator.adapter.service.rabbitmq.producer;
 
 import java.util.UUID;
 
-public interface PaymentProducerGateway {
+public interface InvoiceProducerGateway {
 
-    void sendPaymentForProcessing(UUID paymentId);
+    void sendInvoiceForCreation(UUID invoiceId);
 }

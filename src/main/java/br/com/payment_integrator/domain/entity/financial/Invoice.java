@@ -10,7 +10,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.dialect.PostgreSQLEnumJdbcType;
+import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -47,8 +49,8 @@ public class Invoice {
     @Column(name = "payment_method", nullable = false)
     private PaymentMethodEnum paymentMethod;
 
-    @Column(name = "payment_external_id")
-    private Integer paymentExternalId;
+    @Column(name = "externalPaymentId")
+    private Integer externalPaymentId;
 
     @Column(name = "pix_qr_code")
     private String pixQrCode;
@@ -59,7 +61,8 @@ public class Invoice {
     @Column(name = "status_details_external")
     private String statusDetailsExternal;
 
-    @Column(name = "gateway_response")
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name = "gateway_response", columnDefinition = "jsonb")
     private String gatewayResponse;
 
     @CreationTimestamp

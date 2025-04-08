@@ -2,7 +2,7 @@ package br.com.payment_integrator.application.service.user;
 
 import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
-import br.com.payment_integrator.domain.exception.user.UserAlreadyExistException;
+import br.com.payment_integrator.domain.exception.account.AccountAlreadyExistException;
 import br.com.payment_integrator.domain.service.user.ICreateAccountService;
 import br.com.payment_integrator.infra.repository.authentication.AccountRepository;
 import jakarta.transaction.Transactional;
@@ -23,7 +23,7 @@ public class CreateAccountService implements ICreateAccountService {
         Optional<Account> accountExist = accountRepository.findByEmail(createAccountDTO.email());
 
         if (accountExist.isPresent()) {
-            throw new UserAlreadyExistException();
+            throw new AccountAlreadyExistException();
         }
 
         Account account = Account.builder()

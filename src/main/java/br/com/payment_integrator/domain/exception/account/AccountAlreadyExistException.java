@@ -1,15 +1,15 @@
-package br.com.payment_integrator.domain.exception.user;
+package br.com.payment_integrator.domain.exception.account;
 
 import br.com.payment_integrator.domain.exception.BaseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
-public class UserAlreadyExistException extends BaseException {
+public class AccountAlreadyExistException extends BaseException {
 
     private static final String MESSAGE = "Usuário já existe";
 
-    public UserAlreadyExistException() {
+    public AccountAlreadyExistException() {
         super(MESSAGE);
     }
 

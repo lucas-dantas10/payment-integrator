@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String PAYMENT_CREATED_QUEUE = "payment-created";
+    public static final String INVOICE_CREATED_QUEUE = "invoice-created";
 
     @Bean
     public Declarable paymentProcessorQueue() {
-        return new Queue(PAYMENT_CREATED_QUEUE);
+        return new Queue(INVOICE_CREATED_QUEUE);
     }
 }
