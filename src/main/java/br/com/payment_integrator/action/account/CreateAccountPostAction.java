@@ -1,7 +1,7 @@
-package br.com.payment_integrator.action.user;
+package br.com.payment_integrator.action.account;
 
-import br.com.payment_integrator.domain.dto.user.create_user.CreateUserDTO;
-import br.com.payment_integrator.domain.service.user.ICreateUserService;
+import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
+import br.com.payment_integrator.domain.service.user.ICreateAccountService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
-public class CreateUserPostAction {
+public class CreateAccountPostAction {
 
-    private final ICreateUserService createUserService;
+    private final ICreateAccountService createAccount;
 
     @PostMapping
-    @Tag(name = "User")
-    public ResponseEntity<Void> createUser(@RequestBody CreateUserDTO createUserDTO) throws Exception {
-        createUserService.createUser(createUserDTO);
+    @Tag(name = "Account")
+    public ResponseEntity<Void> createAccount(@RequestBody CreateAccountDTO createAccountDTO) throws Exception {
+        createAccount.createAccount(createAccountDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

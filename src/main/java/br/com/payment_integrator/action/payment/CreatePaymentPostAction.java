@@ -2,7 +2,6 @@ package br.com.payment_integrator.action.payment;
 
 import br.com.payment_integrator.domain.dto.payment.request.create_payment.CreatePaymentDTO;
 import br.com.payment_integrator.domain.dto.payment.response.PaymentResponseDTO;
-import br.com.payment_integrator.domain.entity.financial.Payment;
 import br.com.payment_integrator.domain.service.payment.ICreatePaymentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

@@ -22,8 +22,8 @@ public class Customer {
     private UUID id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "payment_id", nullable = false)
-    private Payment payment;
+    @JoinColumn(name = "invoice_id", nullable = false)
+    private Invoice invoice;
 
     @Column(nullable = false)
     private String name;

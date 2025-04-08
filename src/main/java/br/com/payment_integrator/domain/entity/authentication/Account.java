@@ -6,15 +6,16 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(schema = "authentication", name = "tb_user")
+@Table(schema = "authentication", name = "tb_account")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -27,7 +28,10 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String password;
+    private BigDecimal balance;
+
+    @Column(name = "api_key", nullable = false, unique = true)
+    private String apiKey;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)

@@ -1,6 +1,6 @@
 package br.com.payment_integrator.domain.entity.financial;
 
-import br.com.payment_integrator.domain.entity.authentication.User;
+import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.enums.PaymentMethodEnum;
 import br.com.payment_integrator.domain.enums.StatusPaymentEnum;
 import jakarta.persistence.*;
@@ -17,20 +17,20 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(schema = "financial", name = "tb_payment")
+@Table(schema = "financial", name = "tb_invoice")
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payment {
+public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "account_id", nullable = false)
+    private Account account;
 
     @Column(nullable = false)
     private BigDecimal amount;
@@ -47,10 +47,28 @@ public class Payment {
     @Column(name = "payment_method", nullable = false)
     private PaymentMethodEnum paymentMethod;
 
+    @Column(name = "payment_external_id")
+    private Integer paymentExternalId;
+
+    @Column(name = "pix_qr_code")
+    private String pixQrCode;
+
+    @Column(name = "pix_payment_link")
+    private String pixPaymentLink;
+
+    @Column(name = "status_details_external")
+    private String statusDetailsExternal;
+
+    @Column(name = "gateway_response")
+    private String gatewayResponse;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_status_at")
     private LocalDateTime updatedStatusAt;
+
+    @Column(name = "approved_at")
+    private LocalDateTime approvedAt;
 }

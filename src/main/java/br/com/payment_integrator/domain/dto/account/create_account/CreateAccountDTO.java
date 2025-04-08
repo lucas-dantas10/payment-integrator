@@ -1,8 +1,8 @@
-package br.com.payment_integrator.domain.dto.user.create_user;
+package br.com.payment_integrator.domain.dto.account.create_account;
 
 import jakarta.validation.constraints.NotNull;
 
-public record CreateUserDTO(
+public record CreateAccountDTO(
         @NotNull(message = "O campo de name é obrigatório")
         String name,
 

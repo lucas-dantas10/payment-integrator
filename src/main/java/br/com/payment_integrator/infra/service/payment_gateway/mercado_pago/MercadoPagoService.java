@@ -2,7 +2,7 @@ package br.com.payment_integrator.infra.service.payment_gateway.mercado_pago;
 
 import br.com.payment_integrator.adapter.service.payment_gateway.PaymentGateway;
 import br.com.payment_integrator.domain.entity.financial.Customer;
-import br.com.payment_integrator.domain.entity.financial.Payment;
+import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.CreatePaymentRequestDTO;
 import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.PayerDTO;
 import br.com.payment_integrator.infra.service.client.payment.MercadoPagoClient;
@@ -26,15 +26,15 @@ public class MercadoPagoService implements PaymentGateway
     private final MercadoPagoClient mercadoPagoClient;
 
     @Override
-    public void createPayment(Payment payment, Customer customer) {
+    public void createPayment(Invoice invoice, Customer customer) {
         log.info("Start creating payment");
 
         PayerDTO payerDTO = PayerDTO.builder()
                 .email(customer.getEmail())
                 .build();
         CreatePaymentRequestDTO requestDTO = CreatePaymentRequestDTO.builder()
-                .transactionAmount(payment.getAmount())
-                .paymentMethodId(payment.getPaymentMethod().name())
+                .transactionAmount(invoice.getAmount())
+                .paymentMethodId(invoice.getPaymentMethod().name())
                 .payer(payerDTO)
                 .build();
 

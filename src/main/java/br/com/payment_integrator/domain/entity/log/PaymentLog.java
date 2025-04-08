@@ -1,6 +1,6 @@
 package br.com.payment_integrator.domain.entity.log;
 
-import br.com.payment_integrator.domain.entity.financial.Payment;
+import br.com.payment_integrator.domain.entity.financial.Invoice;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,8 +22,8 @@ public class PaymentLog {
     private UUID id;
 
     @ManyToOne
-    @JoinColumn(name = "payment_id", nullable = false)
-    private Payment payment;
+    @JoinColumn(name = "invoice_id", nullable = false)
+    private Invoice invoice;
 
     @Column(nullable = false)
     private String message;

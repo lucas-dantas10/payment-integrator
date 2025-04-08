@@ -1,11 +1,9 @@
 package br.com.payment_integrator.domain.service.product;
 
 import br.com.payment_integrator.domain.dto.payment.request.create_payment.ProductDTO;
-import br.com.payment_integrator.domain.entity.financial.Payment;
-
-import java.util.List;
+import br.com.payment_integrator.domain.entity.financial.Invoice;
 
 public interface ICreateProductService {
 
-    void createProduct(ProductDTO productDTO, Payment payment);
+    void createProduct(ProductDTO productDTO, Invoice invoice);
 }
