@@ -27,7 +27,7 @@ public class MercadoPagoService implements InvoiceGateway
 
     @Override
     public void createInvoice(Invoice invoice, Customer customer) {
-        log.info("Start creating payment");
+        log.info("Inicio chamada serviço externo com o invoice {} do cliente {}", invoice.getId(), customer.getName());
 
         PayerDTO payerDTO = PayerDTO.builder()
                 .email(customer.getEmail())
@@ -40,6 +40,6 @@ public class MercadoPagoService implements InvoiceGateway
 
         mercadoPagoClient.createPayment(token, idempotencyKey, requestDTO);
 
-        log.info("Finish create payment");
+        log.info("Finalizada chamada serviço externo com o invoice {} do cliente {}", invoice.getId(), customer.getName());
     }
 }

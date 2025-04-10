@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public class InvoiceNotFoundException extends BaseException {
 
-    private static final String MESSAGE = "Fatura não encontrado";
+    private static final String MESSAGE = "Fatura não encontrada";
 
     public InvoiceNotFoundException() {
         super(MESSAGE);

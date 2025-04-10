@@ -18,8 +18,8 @@ public class CreateAccountPostAction {
 
     private final ICreateAccountService createAccount;
 
-    @PostMapping
     @Tag(name = "Account")
+    @PostMapping
     public ResponseEntity<Void> createAccount(@RequestBody CreateAccountDTO createAccountDTO) throws Exception {
         createAccount.createAccount(createAccountDTO);
 

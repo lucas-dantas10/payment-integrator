@@ -74,4 +74,19 @@ public class Invoice {
 
     @Column(name = "approved_at")
     private LocalDateTime approvedAt;
+
+    public static Invoice create(Account account,
+                       BigDecimal totalAmount,
+                       PaymentMethodEnum paymentMethod,
+                       String currency) {
+        account.setBalance(account.getBalance().add(totalAmount));
+
+        return Invoice.builder()
+                .account(account)
+                .amount(totalAmount)
+                .status(StatusPaymentEnum.PENDING)
+                .paymentMethod(paymentMethod)
+                .currency(currency)
+                .build();
+    }
 }

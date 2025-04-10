@@ -10,12 +10,14 @@ import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogSer
 import br.com.payment_integrator.infra.repository.financial.CustomerRepository;
 import br.com.payment_integrator.infra.repository.financial.InvoiceRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CreateInvoiceGatewayService implements ICreateInvoiceGatewayService {
 
     private final InvoiceRepository invoiceRepository;
@@ -34,6 +36,7 @@ public class CreateInvoiceGatewayService implements ICreateInvoiceGatewayService
 
         // TODO: Pegar retorno do mercado pago e salvar na tabela de Invoice
 
-        createPaymentLogService.createPaymentLog(invoice, "Fatura criada com sucesso");
+        log.info("Fatura criada com ID {} do cliente {}. Valor: {} {}",
+                invoice.getId(), customer.getName(), invoice.getAmount(), invoice.getCurrency());
     }
 }

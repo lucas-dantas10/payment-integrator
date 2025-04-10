@@ -3,6 +3,7 @@ package br.com.payment_integrator.domain.entity.authentication;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Entity
 @Table(schema = "authentication", name = "tb_account")
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {

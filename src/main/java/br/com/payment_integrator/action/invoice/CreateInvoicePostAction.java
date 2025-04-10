@@ -19,8 +19,8 @@ public class CreateInvoicePostAction {
 
     private final ICreateInvoiceService createInvoiceService;
 
+    @Tag(name = "Invoice")
     @PostMapping
-    @Tag(name = "Payment")
     public ResponseEntity<InvoiceResponseDTO> createPayment(
             @RequestBody @Valid CreateInvoiceDTO createInvoiceDTO) throws Exception {
         return ResponseEntity.ok(createInvoiceService.createInvoice(createInvoiceDTO));
