@@ -1,11 +1,11 @@
-package br.com.payment_integrator.infra.service.payment_gateway.mercado_pago;
+package br.com.payment_integrator.infra.service.invoice_gateway.mercado_pago;
 
-import br.com.payment_integrator.adapter.service.payment_gateway.PaymentGateway;
+import br.com.payment_integrator.adapter.service.invoice_gateway.InvoiceGateway;
 import br.com.payment_integrator.domain.entity.financial.Customer;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.CreatePaymentRequestDTO;
 import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.PayerDTO;
-import br.com.payment_integrator.infra.service.client.payment.MercadoPagoClient;
+import br.com.payment_integrator.infra.service.client.invoice.MercadoPagoClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MercadoPagoService implements PaymentGateway
+public class MercadoPagoService implements InvoiceGateway
 {
 
     @Value("Bearer ${payments.gateway.mercado_pago.token}")
@@ -26,7 +26,7 @@ public class MercadoPagoService implements PaymentGateway
     private final MercadoPagoClient mercadoPagoClient;
 
     @Override
-    public void createPayment(Invoice invoice, Customer customer) {
+    public void createInvoice(Invoice invoice, Customer customer) {
         log.info("Start creating payment");
 
         PayerDTO payerDTO = PayerDTO.builder()

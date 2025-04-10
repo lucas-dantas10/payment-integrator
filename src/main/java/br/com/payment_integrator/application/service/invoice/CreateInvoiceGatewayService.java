@@ -1,6 +1,6 @@
-package br.com.payment_integrator.application.service.payment;
+package br.com.payment_integrator.application.service.invoice;
 
-import br.com.payment_integrator.adapter.service.payment_gateway.PaymentGateway;
+import br.com.payment_integrator.adapter.service.invoice_gateway.InvoiceGateway;
 import br.com.payment_integrator.domain.entity.financial.Customer;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.domain.exception.customer.CustomerNotFoundException;
@@ -21,7 +21,7 @@ public class CreateInvoiceGatewayService implements ICreateInvoiceGatewayService
     private final InvoiceRepository invoiceRepository;
     private final CustomerRepository customerRepository;
     private final ICreatePaymentLogService createPaymentLogService;
-    private final PaymentGateway paymentGateway;
+    private final InvoiceGateway invoiceGateway;
 
     @Override
     public void createInvoice(String invoiceId) {
@@ -30,7 +30,7 @@ public class CreateInvoiceGatewayService implements ICreateInvoiceGatewayService
         Customer customer = customerRepository.findByInvoiceId(UUID.fromString(invoiceId))
                 .orElseThrow(CustomerNotFoundException::new);
 
-        paymentGateway.createPayment(invoice, customer);
+        invoiceGateway.createInvoice(invoice, customer);
 
         // TODO: Pegar retorno do mercado pago e salvar na tabela de Invoice
 

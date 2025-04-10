@@ -1,4 +1,4 @@
-package br.com.payment_integrator.infra.service.client.payment;
+package br.com.payment_integrator.infra.service.client.invoice;
 
 import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.CreatePaymentRequestDTO;
 import org.springframework.cloud.openfeign.FeignClient;

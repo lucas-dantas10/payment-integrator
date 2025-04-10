@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class InvoiceConsumer implements InvoiceConsumerGateway {
+public class InvoiceConsumerHandler implements InvoiceConsumerGateway {
 
     private final ICreateInvoiceGatewayService createInvoiceGatewayService;
 

@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class InvoiceProducer implements InvoiceProducerGateway {
+public class InvoiceProducerHandler implements InvoiceProducerGateway {
 
     private final RabbitTemplate rabbitTemplate;
 

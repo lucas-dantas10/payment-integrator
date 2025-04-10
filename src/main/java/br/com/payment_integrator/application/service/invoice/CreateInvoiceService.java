@@ -1,4 +1,4 @@
-package br.com.payment_integrator.application.service.payment;
+package br.com.payment_integrator.application.service.invoice;
 
 import br.com.payment_integrator.domain.dto.invoice.request.create_payment.CreateInvoiceDTO;
 import br.com.payment_integrator.domain.dto.invoice.response.InvoiceResponseDTO;
@@ -31,6 +31,7 @@ public class CreateInvoiceService implements ICreateInvoiceService {
     @Transactional
     public InvoiceResponseDTO createInvoice(CreateInvoiceDTO createInvoiceDTO) throws Exception {
         Account account = findUserByIdService.findAccountById("366097e2-4fa1-447c-99b7-71478dd3a993");
+        // TODO: adicionar no account o balance atual com relação aos invoices
 
         Invoice invoice = Invoice.builder()
             .account(account)
