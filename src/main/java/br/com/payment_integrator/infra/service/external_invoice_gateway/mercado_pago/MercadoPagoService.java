@@ -1,10 +1,11 @@
-package br.com.payment_integrator.infra.service.invoice_gateway.mercado_pago;
+package br.com.payment_integrator.infra.service.external_invoice_gateway.mercado_pago;
 
-import br.com.payment_integrator.adapter.service.invoice_gateway.InvoiceGateway;
+import br.com.payment_integrator.adapter.service.external_invoice_service.ExternalInvoiceService;
 import br.com.payment_integrator.domain.entity.financial.Customer;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
-import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.CreatePaymentRequestDTO;
-import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.PayerDTO;
+import br.com.payment_integrator.infra.dto.mercado_pago.request.invoice.create_invoice.CreateInvoiceRequestDTO;
+import br.com.payment_integrator.infra.dto.mercado_pago.request.invoice.create_invoice.PayerDTO;
+import br.com.payment_integrator.infra.dto.mercado_pago.response.invoice.create_invoice.CreateInvoiceResponseDTO;
 import br.com.payment_integrator.infra.service.client.invoice.MercadoPagoClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MercadoPagoService implements InvoiceGateway
+public class MercadoPagoService implements ExternalInvoiceService
 {
 
     @Value("Bearer ${payments.gateway.mercado_pago.token}")
@@ -26,20 +27,20 @@ public class MercadoPagoService implements InvoiceGateway
     private final MercadoPagoClient mercadoPagoClient;
 
     @Override
-    public void createInvoice(Invoice invoice, Customer customer) {
+    public CreateInvoiceResponseDTO createInvoice(Invoice invoice, Customer customer) {
         log.info("Inicio chamada serviço externo com o invoice {} do cliente {}", invoice.getId(), customer.getName());
 
         PayerDTO payerDTO = PayerDTO.builder()
                 .email(customer.getEmail())
                 .build();
-        CreatePaymentRequestDTO requestDTO = CreatePaymentRequestDTO.builder()
+        CreateInvoiceRequestDTO requestDTO = CreateInvoiceRequestDTO.builder()
                 .transactionAmount(invoice.getAmount())
                 .paymentMethodId(invoice.getPaymentMethod().name())
                 .payer(payerDTO)
                 .build();
 
-        mercadoPagoClient.createPayment(token, idempotencyKey, requestDTO);
-
         log.info("Finalizada chamada serviço externo com o invoice {} do cliente {}", invoice.getId(), customer.getName());
+
+        return mercadoPagoClient.createInvoice(token, idempotencyKey, requestDTO);
     }
 }

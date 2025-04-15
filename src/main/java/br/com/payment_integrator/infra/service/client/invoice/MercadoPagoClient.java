@@ -1,6 +1,7 @@
 package br.com.payment_integrator.infra.service.client.invoice;
 
-import br.com.payment_integrator.infra.dto.mercado_pago.request.payment.create_payment.CreatePaymentRequestDTO;
+import br.com.payment_integrator.infra.dto.mercado_pago.request.invoice.create_invoice.CreateInvoiceRequestDTO;
+import br.com.payment_integrator.infra.dto.mercado_pago.response.invoice.create_invoice.CreateInvoiceResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ public interface MercadoPagoClient {
     @PostMapping(value = "/payments",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    void createPayment(@RequestHeader("Authorization") String token,
+    CreateInvoiceResponseDTO createInvoice(@RequestHeader("Authorization") String token,
                                            @RequestHeader("X-Idempotency-Key") String idempotencyKey,
-                                           @RequestBody CreatePaymentRequestDTO dto);
+                                           @RequestBody CreateInvoiceRequestDTO dto);
 }

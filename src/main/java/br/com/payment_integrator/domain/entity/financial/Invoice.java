@@ -79,8 +79,6 @@ public class Invoice {
                        BigDecimal totalAmount,
                        PaymentMethodEnum paymentMethod,
                        String currency) {
-        account.setBalance(account.getBalance().add(totalAmount));
-
         return Invoice.builder()
                 .account(account)
                 .amount(totalAmount)
@@ -88,5 +86,19 @@ public class Invoice {
                 .paymentMethod(paymentMethod)
                 .currency(currency)
                 .build();
+    }
+
+    public Invoice updateWithExternalData(Integer externalInvoiceId,
+                                          String qrCode,
+                                          String paymentLink,
+                                          String statusDetail,
+                                          String gatewayResponse) {
+        this.setExternalPaymentId(externalInvoiceId);
+        this.setPixQrCode(qrCode);
+        this.setPixPaymentLink(paymentLink);
+        this.setStatusDetailsExternal(statusDetail);
+        this.setGatewayResponse(gatewayResponse);
+
+        return this;
     }
 }
