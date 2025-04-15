@@ -1,6 +1,6 @@
 # Integrador de Pagamentos Online
 
-Este projeto é uma API de integração de pagamentos online desenvolvida em **Spring Boot**, utilizando **RabbitMQ** para processamento assíncrono e **PostgreSQL** como banco de dados.
+Este projeto é uma API de gateway de pagamento online, desenvolvida com Spring Boot, que permite a integração entre sistemas e serviços de pagamento externos (como Mercado Pago, PagSeguro, etc.).
 
 ## 📌 **Funcionalidades**
 - Criar pagamentos para um usuário.
@@ -86,15 +86,32 @@ Após iniciar sua aplicação, você pode testar os endpoints diretamente pelo *
 
 
 ## 🔄 **Fluxo do Sistema**
-1️⃣ O **usuário** solicita um pagamento.
-2️⃣ O pagamento é salvo no **banco de dados** com status **PENDING**.
-3️⃣ O pagamento é enviado para o **RabbitMQ**.
-4️⃣ O **RabbitMQ** processa a mensagem e atualiza o status para **APPROVED** ou **REJECTED**.
-5️⃣ Os logs do pagamento ficam registrados no sistema.
+1️⃣ O usuário realiza uma compra ou serviço e escolhe a forma de pagamento (ex: cartão ou Pix).
+
+2️⃣ O sistema cria o pagamento no banco de dados com status PENDING (pendente), aguardando a resposta do gateway.
+
+3️⃣ O sistema envia os dados do pagamento para o gateway de pagamento (ex: Mercado Pago, Stripe, PagSeguro).
+
+4️⃣ O gateway de pagamento verifica os dados: se tem saldo, se o cartão é válido, se o Pix pode ser gerado, etc.
+
+5️⃣ O gateway responde para o sistema se o pagamento foi:
+
+    ✅ APPROVED (aprovado)
+    
+    ❌ REJECTED (rejeitado)
+    
+    🕒 IN_PROCESS (em análise)
+
+6️⃣ O sistema atualiza o status do pagamento no banco de dados com base na resposta do gateway.
+
+7️⃣ Todas as ações são registradas nos logs, garantindo rastreabilidade.
 
 ## 📌 **Próximos Passos**
-✅ Adicionar autenticação com JWT  
-✅ Criar um webhook para atualizar clientes externos  
+✅ Adicionar autenticação com Api Key
+
+✅ Criar um webhook para atualizar os dados da fatura
+
+
 ✅ Implementar retries para pagamentos rejeitados
 
 ---
