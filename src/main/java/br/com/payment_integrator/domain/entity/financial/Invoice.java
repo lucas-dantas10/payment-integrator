@@ -34,6 +34,10 @@ public class Invoice {
     @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
+    @OneToOne(mappedBy = "invoice")
+    @JoinColumn(name = "invoice_id", nullable = false)
+    private Customer customer;
+
     @Column(nullable = false)
     private BigDecimal amount;
 
