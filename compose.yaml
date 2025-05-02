@@ -22,6 +22,23 @@ services:
       - "5672"
       - "15672:15672"
 
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+
   app:
     build: .
     container_name: payment_integrator
@@ -38,5 +55,6 @@ services:
       SPRING_RABBITMQ_PASSWORD: admin
     ports:
       - "8080:8080"
+
 volumes:
   postgres_data:

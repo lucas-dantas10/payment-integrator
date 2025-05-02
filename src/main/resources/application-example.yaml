@@ -19,3 +19,25 @@ spring:
     host: rabbitmq
     username: admin
     password: admin
+
+logging:
+  level:
+    io.micrometer: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http: DEBUG
+
+management:
+  endpoint:
+    prometheus:
+      access: unrestricted
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: [ "prometheus" ]
+  prometheus:
+    metrics:
+      export:
+        enabled: true
