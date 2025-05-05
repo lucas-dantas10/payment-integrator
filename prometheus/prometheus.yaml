@@ -6,3 +6,6 @@ scrape_configs:
       - targets: ['host.docker.internal:8080']
         labels:
           application: 'My Spring Boot Application'
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
