@@ -84,6 +84,35 @@ Após iniciar sua aplicação, você pode testar os endpoints diretamente pelo *
 
 💡 O Swagger facilita a visualização e testes da API diretamente no navegador, sem a necessidade de ferramentas externas como **Insomnia**.
 
+## 📊 Dashboards Grafana
+A aplicação já vem pronta para ser monitorada com o Grafana, utilizando dashboards padrões para o RabbitMQ e para a aplicação Spring Boot.
+
+🔸 Como acessar o Grafana
+Acesse no navegador:
+- 📍 http://localhost:3000
+- Usuário: admin
+- Senha: admin
+
+## 🐰 Dashboard padrão do RabbitMQ
+- 📌 Nome: RabbitMQ Overview
+- 📦 ID do Dashboard: 10991
+- 🔗 Link para importar manualmente:
+https://grafana.com/grafana/dashboards/10991
+
+Esse dashboard exibe filas, taxas de mensagens publicadas/consumidas, conexões e métricas de performance do broker.
+
+## 🌱 Dashboard padrão do Spring Boot
+- 📌 Nome: Spring Boot 2.1 System Monitor
+- 📦 ID do Dashboard: 11378
+- 🔗 Link para importar manualmente:
+  https://grafana.com/grafana/dashboards/11378-justai-system-monitor/
+
+### Este dashboard fornece insights em tempo real sobre:
+
+- Uso de memória da JVM
+- GC (Garbage Collector)
+- Tempo de resposta da API
+- Contadores e timers expostos via Micrometer
 
 ## 🔄 **Fluxo do Sistema**
 1️⃣ O usuário realiza uma compra ou serviço e escolhe a forma de pagamento (ex: cartão ou Pix).
