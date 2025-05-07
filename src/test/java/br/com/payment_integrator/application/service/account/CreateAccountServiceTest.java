@@ -2,6 +2,7 @@ package br.com.payment_integrator.application.service.account;
 
 import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
+import br.com.payment_integrator.domain.service.api_key.IGenerateApiKeyService;
 import br.com.payment_integrator.infra.repository.authentication.AccountRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,17 +26,23 @@ class CreateAccountServiceTest {
     @Mock
     private AccountRepository accountRepository;
 
+    @Mock
+    private IGenerateApiKeyService generateApiKeyService;
+
     @Test
     public void shouldCreateAccount() throws Exception {
-        CreateAccountDTO dto = new CreateAccountDTO("Teste", "teste@email.com", "1234");
+        CreateAccountDTO dto = new CreateAccountDTO("Teste", "teste@email.com");
         Account savedAccount = Account.builder()
                 .name(dto.name())
                 .email(dto.email())
                 .apiKey("teste")
+                .balance(BigDecimal.ZERO)
                 .build();
 
         when(accountRepository.findByEmail("teste@email.com"))
                 .thenReturn(Optional.empty());
+
+        when(generateApiKeyService.generate()).thenReturn("teste");
 
         when(accountRepository.save(savedAccount))
                 .thenReturn(savedAccount);
@@ -45,6 +53,7 @@ class CreateAccountServiceTest {
         assertInstanceOf(Account.class, result);
         assertEquals("Teste", result.getName());
         assertEquals("teste@email.com", result.getEmail());
-        assertEquals("teste", result.getApiKey()); // TODO: alterar após a criação da api key
+        assertEquals("teste", result.getApiKey());
+        assertEquals(BigDecimal.ZERO, result.getBalance());
     }
 }
