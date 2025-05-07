@@ -1,4 +1,4 @@
-package br.com.payment_integrator.application.service.user;
+package br.com.payment_integrator.application.service.account;
 
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.exception.account.AccountNotFoundException;

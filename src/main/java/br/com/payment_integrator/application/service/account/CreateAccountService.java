@@ -1,4 +1,4 @@
-package br.com.payment_integrator.application.service.user;
+package br.com.payment_integrator.application.service.account;
 
 import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
@@ -17,7 +17,6 @@ public class CreateAccountService implements ICreateAccountService {
 
     private final AccountRepository accountRepository;
 
-    @Override
     @Transactional
     public Account createAccount(CreateAccountDTO createAccountDTO) throws Exception {
         Optional<Account> accountExist = accountRepository.findByEmail(createAccountDTO.email());
@@ -26,6 +25,7 @@ public class CreateAccountService implements ICreateAccountService {
             throw new AccountAlreadyExistException();
         }
 
+        // TODO: Criar a account corretamente
         Account account = Account.builder()
                 .name(createAccountDTO.name())
                 .email(createAccountDTO.email())
