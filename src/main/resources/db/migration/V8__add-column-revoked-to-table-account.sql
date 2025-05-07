@@ -1,0 +1,1 @@
+ALTER TABLE authentication.tb_account ADD COLUMN revoked_at TIMESTAMP;

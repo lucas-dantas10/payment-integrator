@@ -41,4 +41,7 @@ public class Account {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "revoked_at")
+    private LocalDateTime revokedAt;
 }
