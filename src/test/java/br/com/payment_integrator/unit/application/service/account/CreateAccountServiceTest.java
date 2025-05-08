@@ -5,6 +5,8 @@ import br.com.payment_integrator.domain.dto.account.create_account.CreateAccount
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.service.api_key.IGenerateApiKeyService;
 import br.com.payment_integrator.infra.repository.authentication.AccountRepository;
+import br.com.payment_integrator.unit.factory.dto.CreateAccountDTOMock;
+import br.com.payment_integrator.unit.factory.entity.account.AccountMock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,13 +34,8 @@ class CreateAccountServiceTest {
 
     @Test
     public void shouldCreateAccount() throws Exception {
-        CreateAccountDTO dto = new CreateAccountDTO("Teste", "teste@email.com");
-        Account savedAccount = Account.builder()
-                .name(dto.name())
-                .email(dto.email())
-                .apiKey("teste")
-                .balance(BigDecimal.ZERO)
-                .build();
+        CreateAccountDTO dto = CreateAccountDTOMock.createAccountDTO();
+        Account savedAccount = AccountMock.createAccountWithoutId(dto.name(), dto.email(), "teste");
 
         when(accountRepository.findByEmail("teste@email.com"))
                 .thenReturn(Optional.empty());

@@ -4,6 +4,7 @@ import br.com.payment_integrator.application.service.account.FindAccountByIdServ
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.exception.account.AccountNotFoundException;
 import br.com.payment_integrator.infra.repository.authentication.AccountRepository;
+import br.com.payment_integrator.unit.factory.entity.account.AccountMock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,7 +12,6 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,13 +30,7 @@ class FindAccountByIdServiceTest
     @Test
     public void shouldFindAccountById() {
         UUID accountId = UUID.randomUUID();
-        Account account = Account.builder()
-                .id(accountId)
-                .name("Teste")
-                .email("Teste@email.com")
-                .apiKey("teste")
-                .balance(BigDecimal.ZERO)
-                .build();
+        Account account = AccountMock.createAccountWithId(accountId, "Teste", "teste@email.com", "teste");
 
         when(accountRepository.findById(accountId)).thenReturn(Optional.of(account));
 
