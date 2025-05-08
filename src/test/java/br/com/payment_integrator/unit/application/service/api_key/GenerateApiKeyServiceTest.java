@@ -1,5 +1,6 @@
 package br.com.payment_integrator.unit.application.service.api_key;
 
+import br.com.payment_integrator.application.service.api_key.GenerateApiKeyService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

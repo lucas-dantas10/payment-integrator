@@ -1,5 +1,6 @@
 package br.com.payment_integrator.unit.application.service.account;
 
+import br.com.payment_integrator.application.service.account.CreateAccountService;
 import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.service.api_key.IGenerateApiKeyService;

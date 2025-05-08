@@ -1,5 +1,6 @@
 package br.com.payment_integrator.unit.application.service.customer;
 
+import br.com.payment_integrator.application.service.customer.CreateCustomerService;
 import br.com.payment_integrator.domain.dto.invoice.request.create_payment.CustomerDTO;
 import br.com.payment_integrator.domain.entity.financial.Customer;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
