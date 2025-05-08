@@ -1,4 +1,4 @@
-package br.com.payment_integrator.application.service.api_key;
+package br.com.payment_integrator.unit.application.service.api_key;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,4 +1,4 @@
-package br.com.payment_integrator.application.service.customer;
+package br.com.payment_integrator.unit.application.service.customer;
 
 import br.com.payment_integrator.domain.dto.invoice.request.create_payment.CustomerDTO;
 import br.com.payment_integrator.domain.entity.financial.Customer;
