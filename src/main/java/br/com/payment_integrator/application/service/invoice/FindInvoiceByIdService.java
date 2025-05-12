@@ -1,11 +1,7 @@
 package br.com.payment_integrator.application.service.invoice;
 
 import br.com.payment_integrator.domain.builder.invoice.InvoiceResponseBuilder;
-import br.com.payment_integrator.domain.dto.invoice.response.FindInvoiceById.CustomerResponseDTO;
 import br.com.payment_integrator.domain.dto.invoice.response.FindInvoiceById.InvoiceDetailsResponseDTO;
-import br.com.payment_integrator.domain.dto.invoice.response.FindInvoiceById.MetadataResponseDTO;
-import br.com.payment_integrator.domain.dto.invoice.response.FindInvoiceById.PixResponseDTO;
-import br.com.payment_integrator.domain.entity.financial.Customer;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.domain.exception.invoice.InvoiceNotFoundException;
 import br.com.payment_integrator.domain.service.invoice.IFindInvoiceByIdService;
