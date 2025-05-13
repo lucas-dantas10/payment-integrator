@@ -2,9 +2,7 @@ package br.com.payment_integrator.domain.entity.log;
 
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -13,6 +11,7 @@ import java.util.UUID;
 @Entity
 @Table(schema = "log", name = "tb_payment_log")
 @Builder
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentLog {
