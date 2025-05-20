@@ -45,7 +45,7 @@ public class CreateInvoiceService implements ICreateInvoiceService {
 
         invoiceRepository.save(invoice);
 
-        createCustomerService.createCustomer(createInvoiceDTO.customer(), invoice);
+        createCustomerService.execute(createInvoiceDTO.customer(), invoice);
 
         createInvoiceDTO.products().forEach(productDTO -> createProductService.createProduct(productDTO, invoice));
 

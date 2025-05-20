@@ -17,7 +17,7 @@ public class CreateCustomerService implements ICreateCustomerService {
     private final CustomerRepository customerRepository;
 
     @Transactional
-    public void createCustomer(CustomerDTO customerDTO, Invoice invoice) {
+    public void execute(CustomerDTO customerDTO, Invoice invoice) {
         Customer customer = Customer.builder()
                 .name(customerDTO.name())
                 .email(customerDTO.email())
