@@ -40,7 +40,7 @@ class FindInvoiceByIdServiceTest {
         when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.of(invoice));
         when(invoiceResponseBuilder.build(invoice)).thenReturn(invoiceDetailsResponseDTO);
 
-        InvoiceDetailsResponseDTO response = findInvoiceByIdService.findById(invoiceId.toString());
+        InvoiceDetailsResponseDTO response = findInvoiceByIdService.execute(invoiceId.toString());
 
         assertEquals(invoiceDetailsResponseDTO, response);
         assertInstanceOf(InvoiceDetailsResponseDTO.class, response);
@@ -54,6 +54,6 @@ class FindInvoiceByIdServiceTest {
 
         when(invoiceRepository.findById(invoiceId)).thenReturn(Optional.empty());
 
-        assertThrows(InvoiceNotFoundException.class, () -> findInvoiceByIdService.findById(invoiceId.toString()));
+        assertThrows(InvoiceNotFoundException.class, () -> findInvoiceByIdService.execute(invoiceId.toString()));
     }
 }

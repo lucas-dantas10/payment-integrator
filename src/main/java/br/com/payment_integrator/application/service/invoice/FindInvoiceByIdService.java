@@ -19,7 +19,7 @@ public class FindInvoiceByIdService implements IFindInvoiceByIdService {
     private final InvoiceResponseBuilder invoiceResponseBuilder;
 
     @Override
-    public InvoiceDetailsResponseDTO findById(String id) {
+    public InvoiceDetailsResponseDTO execute(String id) {
         Invoice invoice = invoiceRepository.findById(UUID.fromString(id)).orElseThrow(InvoiceNotFoundException::new);
 
         return invoiceResponseBuilder.build(invoice);

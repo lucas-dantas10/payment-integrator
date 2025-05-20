@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class FindInvoiceByIdGetAction {
 
-    private final IFindInvoiceByIdService service;
+    private final IFindInvoiceByIdService findInvoiceByIdService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<InvoiceDetailsResponseDTO> findInvoiceById(@PathVariable("id") String id) {
-        return ResponseEntity.ok(service.findById(id));
+        return ResponseEntity.ok(findInvoiceByIdService.execute(id));
     }
 }

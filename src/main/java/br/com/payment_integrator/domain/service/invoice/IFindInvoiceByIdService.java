@@ -4,5 +4,5 @@ import br.com.payment_integrator.domain.dto.invoice.response.FindInvoiceById.Inv
 
 public interface IFindInvoiceByIdService {
 
-    InvoiceDetailsResponseDTO findById(String id);
+    InvoiceDetailsResponseDTO execute(String id);
 }
