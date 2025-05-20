@@ -16,7 +16,7 @@ public class FindAccountByIdService implements IFindAccountByIdService {
     private final AccountRepository accountRepository;
 
     @Override
-    public Account findAccountById(String accountId) throws AccountNotFoundException {
+    public Account execute(String accountId) throws AccountNotFoundException {
         return accountRepository
                 .findById(UUID.fromString(accountId))
                 .orElseThrow(AccountNotFoundException::new);

@@ -35,7 +35,7 @@ public class CreateInvoiceService implements ICreateInvoiceService {
     @Override
     @Transactional
     public InvoiceResponseDTO createInvoice(CreateInvoiceDTO createInvoiceDTO) {
-        Account account = findUserByIdService.findAccountById("366097e2-4fa1-447c-99b7-71478dd3a993");
+        Account account = findUserByIdService.execute("366097e2-4fa1-447c-99b7-71478dd3a993");
 
         Invoice invoice = Invoice.create(
                 account,

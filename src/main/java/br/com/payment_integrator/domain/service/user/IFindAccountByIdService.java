@@ -5,5 +5,5 @@ import br.com.payment_integrator.domain.exception.account.AccountNotFoundExcepti
 
 public interface IFindAccountByIdService {
 
-    Account findAccountById(String userId) throws AccountNotFoundException;
+    Account execute(String userId) throws AccountNotFoundException;
 }

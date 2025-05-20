@@ -34,7 +34,7 @@ class FindAccountByIdServiceTest
 
         when(accountRepository.findById(accountId)).thenReturn(Optional.of(account));
 
-        Account accountResponse = findAccountByIdService.findAccountById(accountId.toString());
+        Account accountResponse = findAccountByIdService.execute(accountId.toString());
 
         verify(accountRepository, times(1)).findById(accountId);
         assertNotNull(accountResponse);
@@ -50,6 +50,6 @@ class FindAccountByIdServiceTest
         UUID accountId = UUID.randomUUID();
         when(accountRepository.findById(accountId)).thenReturn(Optional.empty());
 
-        assertThrows(AccountNotFoundException.class, () -> findAccountByIdService.findAccountById(accountId.toString()));
+        assertThrows(AccountNotFoundException.class, () -> findAccountByIdService.execute(accountId.toString()));
     }
 }
