@@ -60,7 +60,7 @@ public class CreateInvoiceService implements ICreateInvoiceService {
                 invoice.getAmount(),
                 invoice.getCurrency());
 
-        createPaymentLogService.createPaymentLog(invoice, logMessageInvoiceFormatted);
+        createPaymentLogService.execute(invoice, logMessageInvoiceFormatted);
 
         return InvoiceResponseDTO.builder()
                 .id(invoice.getId())

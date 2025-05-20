@@ -4,5 +4,5 @@ import br.com.payment_integrator.domain.entity.financial.Invoice;
 
 public interface ICreatePaymentLogService {
 
-    void createPaymentLog(Invoice invoice, String message);
+    void execute(Invoice invoice, String message);
 }

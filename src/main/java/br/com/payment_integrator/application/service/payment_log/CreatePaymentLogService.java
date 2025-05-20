@@ -14,7 +14,7 @@ public class CreatePaymentLogService implements ICreatePaymentLogService {
     private final PaymentLogRepository paymentLogRepository;
 
     @Override
-    public void createPaymentLog(Invoice invoice, String message) {
+    public void execute(Invoice invoice, String message) {
         PaymentLog paymentLog = PaymentLog.builder()
                 .invoice(invoice)
                 .message(message)

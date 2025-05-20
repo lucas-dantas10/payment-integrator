@@ -33,7 +33,7 @@ public class CreatePaymentLogServiceTest {
                 .message(message)
                 .build();
 
-        createPaymentLogService.createPaymentLog(invoice, message);
+        createPaymentLogService.execute(invoice, message);
 
         ArgumentCaptor<PaymentLog> captor = ArgumentCaptor.forClass(PaymentLog.class);
         verify(paymentLogRepository, times(1)).save(captor.capture());
