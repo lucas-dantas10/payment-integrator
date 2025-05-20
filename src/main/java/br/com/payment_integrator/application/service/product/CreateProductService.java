@@ -4,7 +4,7 @@ import br.com.payment_integrator.domain.dto.invoice.request.create_payment.Produ
 import br.com.payment_integrator.domain.entity.financial.Invoice;
 import br.com.payment_integrator.domain.entity.financial.Product;
 import br.com.payment_integrator.domain.service.product.ICreateProductService;
-import br.com.payment_integrator.infra.repository.financial.ProductReposiitory;
+import br.com.payment_integrator.infra.repository.financial.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class CreateProductService implements ICreateProductService {
 
-    private final ProductReposiitory productReposiitory;
+    private final ProductRepository productRepository;
 
     @Transactional
     public void createProduct(ProductDTO productDTO, Invoice invoice) {
@@ -28,6 +28,6 @@ public class CreateProductService implements ICreateProductService {
                 .createdAt(LocalDateTime.now())
                 .build();
 
-        productReposiitory.save(product);
+        productRepository.save(product);
     }
 }
