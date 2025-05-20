@@ -47,7 +47,7 @@ public class CreateInvoiceService implements ICreateInvoiceService {
 
         createCustomerService.execute(createInvoiceDTO.customer(), invoice);
 
-        createInvoiceDTO.products().forEach(productDTO -> createProductService.createProduct(productDTO, invoice));
+        createInvoiceDTO.products().forEach(productDTO -> createProductService.execute(productDTO, invoice));
 
         log.info("Fatura criada com ID {} para cliente {}. Valor: {} {}",
                 invoice.getId(), createInvoiceDTO.customer().name(), invoice.getAmount(), invoice.getCurrency());

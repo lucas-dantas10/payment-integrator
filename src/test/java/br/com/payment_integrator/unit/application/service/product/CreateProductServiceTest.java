@@ -33,7 +33,7 @@ public class CreateProductServiceTest {
 
         ArgumentCaptor<Product> productCaptor = ArgumentCaptor.forClass(Product.class);
 
-        createProductService.createProduct(productDTO, invoice);
+        createProductService.execute(productDTO, invoice);
 
         verify(productRepository).save(productCaptor.capture());
         Product savedProduct = productCaptor.getValue();

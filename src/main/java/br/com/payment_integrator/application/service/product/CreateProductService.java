@@ -18,7 +18,7 @@ public class CreateProductService implements ICreateProductService {
     private final ProductRepository productRepository;
 
     @Transactional
-    public void createProduct(ProductDTO productDTO, Invoice invoice) {
+    public void execute(ProductDTO productDTO, Invoice invoice) {
         Product product = Product.builder()
                 .invoice(invoice)
                 .name(productDTO.name())

@@ -5,5 +5,5 @@ import br.com.payment_integrator.domain.entity.financial.Invoice;
 
 public interface ICreateProductService {
 
-    void createProduct(ProductDTO productDTO, Invoice invoice);
+    void execute(ProductDTO productDTO, Invoice invoice);
 }
