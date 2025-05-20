@@ -31,7 +31,7 @@ public class CreateAccountService implements ICreateAccountService {
         Account account = Account.builder()
                 .name(createAccountDTO.name())
                 .email(createAccountDTO.email())
-                .apiKey(generateApiKeyService.generate())
+                .apiKey(generateApiKeyService.execute())
                 .balance(BigDecimal.ZERO)
                 .build();
 

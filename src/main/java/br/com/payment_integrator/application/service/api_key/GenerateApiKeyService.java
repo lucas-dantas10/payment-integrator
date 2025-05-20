@@ -11,7 +11,7 @@ public class GenerateApiKeyService implements IGenerateApiKeyService {
 
     private static final int NUMBER_BYTE = 32;
 
-    public String generate() {
+    public String execute() {
         SecureRandom random = new SecureRandom();
         byte[] bytes = new byte[NUMBER_BYTE];
         random.nextBytes(bytes);

@@ -20,7 +20,7 @@ class GenerateApiKeyServiceTest {
 
     @Test
     public void shouldGenerateApiKey() {
-        String apiKey = generateApiKeyService.generate();
+        String apiKey = generateApiKeyService.execute();
 
         int expectedMinLength = Base64.getUrlEncoder().withoutPadding().encodeToString(new byte[NUMBER_BYTE]).length();
 

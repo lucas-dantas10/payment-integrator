@@ -40,7 +40,7 @@ class CreateAccountServiceTest {
         when(accountRepository.findByEmail("teste@email.com"))
                 .thenReturn(Optional.empty());
 
-        when(generateApiKeyService.generate()).thenReturn("teste");
+        when(generateApiKeyService.execute()).thenReturn("teste");
 
         when(accountRepository.save(savedAccount))
                 .thenReturn(savedAccount);
