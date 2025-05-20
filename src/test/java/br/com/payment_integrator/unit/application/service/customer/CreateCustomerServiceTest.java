@@ -30,7 +30,7 @@ class CreateCustomerServiceTest {
         CustomerDTO dto = new CustomerDTO("Teste", "teste@email.com");
         Invoice invoice = new Invoice();
 
-        createCustomerService.createCustomer(dto, invoice);
+        createCustomerService.execute(dto, invoice);
 
         ArgumentCaptor<Customer> captor = ArgumentCaptor.forClass(Customer.class);
         verify(customerRepository).save(captor.capture());
