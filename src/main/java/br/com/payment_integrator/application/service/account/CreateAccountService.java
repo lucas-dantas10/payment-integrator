@@ -21,7 +21,7 @@ public class CreateAccountService implements ICreateAccountService {
     private final IGenerateApiKeyService generateApiKeyService;
 
     @Transactional
-    public Account createAccount(CreateAccountDTO createAccountDTO) throws Exception {
+    public Account execute(CreateAccountDTO createAccountDTO) throws Exception {
         Optional<Account> accountExist = accountRepository.findByEmail(createAccountDTO.email());
 
         if (accountExist.isPresent()) {

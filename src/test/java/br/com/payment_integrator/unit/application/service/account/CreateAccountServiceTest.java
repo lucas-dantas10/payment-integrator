@@ -45,7 +45,7 @@ class CreateAccountServiceTest {
         when(accountRepository.save(savedAccount))
                 .thenReturn(savedAccount);
 
-        Account result = createAccountService.createAccount(dto);
+        Account result = createAccountService.execute(dto);
 
         assertNotNull(result);
         assertInstanceOf(Account.class, result);

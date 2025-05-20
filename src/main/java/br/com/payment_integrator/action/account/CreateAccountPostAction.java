@@ -21,7 +21,7 @@ public class CreateAccountPostAction {
     @Tag(name = "Account")
     @PostMapping
     public ResponseEntity<Void> createAccount(@RequestBody CreateAccountDTO createAccountDTO) throws Exception {
-        createAccount.createAccount(createAccountDTO);
+        createAccount.execute(createAccountDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
