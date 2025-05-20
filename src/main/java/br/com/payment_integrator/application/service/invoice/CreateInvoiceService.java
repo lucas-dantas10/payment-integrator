@@ -4,6 +4,7 @@ import br.com.payment_integrator.domain.dto.invoice.request.create_payment.Creat
 import br.com.payment_integrator.domain.dto.invoice.response.InvoiceResponseDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.entity.financial.Invoice;
+import br.com.payment_integrator.domain.enums.LogMessagesEnum;
 import br.com.payment_integrator.domain.event.invoice.InvoiceCreatedEvent;
 import br.com.payment_integrator.domain.service.customer.ICreateCustomerService;
 import br.com.payment_integrator.domain.service.invoice.ICreateInvoiceService;
@@ -22,7 +23,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class CreateInvoiceService implements ICreateInvoiceService {
-    private static final String LOG_MESSAGE_INVOICE = "Fatura do nosso serviço criada com ID %s para cliente %s. Valor: %s %s";
 
     private final InvoiceRepository invoiceRepository;
     private final IFindAccountByIdService findUserByIdService;
@@ -49,12 +49,12 @@ public class CreateInvoiceService implements ICreateInvoiceService {
 
         createInvoiceDTO.products().forEach(productDTO -> createProductService.execute(productDTO, invoice));
 
+        applicationEventPublisher.publishEvent(new InvoiceCreatedEvent(invoice.getId()));
+
         log.info("Fatura criada com ID {} para cliente {}. Valor: {} {}",
                 invoice.getId(), createInvoiceDTO.customer().name(), invoice.getAmount(), invoice.getCurrency());
 
-        applicationEventPublisher.publishEvent(new InvoiceCreatedEvent(invoice.getId()));
-
-        String logMessageInvoiceFormatted = String.format(LOG_MESSAGE_INVOICE,
+        String logMessageInvoiceFormatted = String.format(LogMessagesEnum.FATURA_CRIADA.getMessage(),
                 invoice.getId(),
                 createInvoiceDTO.customer().name(),
                 invoice.getAmount(),
