@@ -1,4 +1,4 @@
-package br.com.payment_integrator.domain.service.user;
+package br.com.payment_integrator.domain.service.account;
 
 import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;

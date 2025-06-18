@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class AccountNotFoundException extends BaseException {
 
-    private static final String MESSAGE = "Usuário não encontrado";
+    private static final String MESSAGE = "Conta não encontrada";
 
     public AccountNotFoundException() {
         super(MESSAGE);

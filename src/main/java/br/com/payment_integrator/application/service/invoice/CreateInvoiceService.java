@@ -10,7 +10,7 @@ import br.com.payment_integrator.domain.service.customer.ICreateCustomerService;
 import br.com.payment_integrator.domain.service.invoice.ICreateInvoiceService;
 import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.domain.service.product.ICreateProductService;
-import br.com.payment_integrator.domain.service.user.IFindAccountByIdService;
+import br.com.payment_integrator.domain.service.account.IFindAccountByIdService;
 import br.com.payment_integrator.adapter.service.rabbitmq.producer.InvoiceProducerGateway;
 import br.com.payment_integrator.infra.repository.financial.InvoiceRepository;
 import jakarta.transaction.Transactional;

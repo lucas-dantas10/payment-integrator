@@ -1,7 +1,7 @@
 package br.com.payment_integrator.action.account;
 
 import br.com.payment_integrator.domain.dto.account.create_account.CreateAccountDTO;
-import br.com.payment_integrator.domain.service.user.ICreateAccountService;
+import br.com.payment_integrator.domain.service.account.ICreateAccountService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

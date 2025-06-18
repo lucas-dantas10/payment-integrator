@@ -4,7 +4,7 @@ import br.com.payment_integrator.domain.dto.account.create_account.CreateAccount
 import br.com.payment_integrator.domain.entity.authentication.Account;
 import br.com.payment_integrator.domain.exception.account.AccountAlreadyExistException;
 import br.com.payment_integrator.domain.service.api_key.IGenerateApiKeyService;
-import br.com.payment_integrator.domain.service.user.ICreateAccountService;
+import br.com.payment_integrator.domain.service.account.ICreateAccountService;
 import br.com.payment_integrator.infra.repository.authentication.AccountRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
