@@ -1,5 +1,6 @@
 package br.com.payment_integrator.application.service.invoice;
 
+import br.com.payment_integrator.application.util.AuthenticatedAccount;
 import br.com.payment_integrator.domain.dto.invoice.request.create_payment.CreateInvoiceDTO;
 import br.com.payment_integrator.domain.dto.invoice.response.InvoiceResponseDTO;
 import br.com.payment_integrator.domain.entity.authentication.Account;
@@ -10,8 +11,6 @@ import br.com.payment_integrator.domain.service.customer.ICreateCustomerService;
 import br.com.payment_integrator.domain.service.invoice.ICreateInvoiceService;
 import br.com.payment_integrator.domain.service.payment_log.ICreatePaymentLogService;
 import br.com.payment_integrator.domain.service.product.ICreateProductService;
-import br.com.payment_integrator.domain.service.account.IFindAccountByIdService;
-import br.com.payment_integrator.adapter.service.rabbitmq.producer.InvoiceProducerGateway;
 import br.com.payment_integrator.infra.repository.financial.InvoiceRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +24,6 @@ import org.springframework.stereotype.Service;
 public class CreateInvoiceService implements ICreateInvoiceService {
 
     private final InvoiceRepository invoiceRepository;
-    private final IFindAccountByIdService findUserByIdService;
-    private final InvoiceProducerGateway invoiceProducerHandler;
     private final ICreatePaymentLogService createPaymentLogService;
     private final ICreateCustomerService createCustomerService;
     private final ICreateProductService createProductService;
@@ -35,7 +32,7 @@ public class CreateInvoiceService implements ICreateInvoiceService {
     @Override
     @Transactional
     public InvoiceResponseDTO createInvoice(CreateInvoiceDTO createInvoiceDTO) {
-        Account account = findUserByIdService.execute("366097e2-4fa1-447c-99b7-71478dd3a993");
+        Account account = AuthenticatedAccount.get();
 
         Invoice invoice = Invoice.create(
                 account,

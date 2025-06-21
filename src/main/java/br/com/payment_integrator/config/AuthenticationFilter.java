@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationFilter extends OncePerRequestFilter {
 
     private static final String API_KEY = "X-API-KEY";
@@ -30,7 +32,9 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                                  @NonNull HttpServletResponse response,
                                  @NonNull FilterChain filterChain)
             throws IOException, ServletException {
-        Authentication authentication = this.getAuthentication((HttpServletRequest) request);
+        log.info("Start authentication filter");
+
+        Authentication authentication = this.getAuthentication(request);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
@@ -39,6 +43,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getRequestURI();
+        log.info(path);
 
         return path.startsWith("/actuator") || path.equals("/api/v1/account");
     }
@@ -56,10 +61,10 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             throw new BadCredentialsException("Chave de API inválida");
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (authentication != null) {
-            return authentication;
+        if (currentAuth != null && currentAuth.isAuthenticated()) {
+            return currentAuth;
         }
 
         return new UsernamePasswordAuthenticationToken(account, null, AuthorityUtils.NO_AUTHORITIES);
