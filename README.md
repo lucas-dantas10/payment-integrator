@@ -136,7 +136,6 @@ Esse dashboard exibe filas, taxas de mensagens publicadas/consumidas, conexões 
 7️⃣ Todas as ações são registradas nos logs, garantindo rastreabilidade.
 
 ## 📌 **Próximos Passos**
-✅ Adicionar autenticação com Api Key
 
 ✅ Criar um webhook para atualizar os dados da fatura
 
